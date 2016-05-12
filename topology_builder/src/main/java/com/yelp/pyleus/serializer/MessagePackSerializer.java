@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-import backtype.storm.multilang.BoltMsg;
-import backtype.storm.multilang.ISerializer;
-import backtype.storm.multilang.NoOutputException;
-import backtype.storm.multilang.ShellMsg;
-import backtype.storm.multilang.SpoutMsg;
-import backtype.storm.task.TopologyContext;
-import backtype.storm.utils.Utils;
+import org.apache.storm.multilang.BoltMsg;
+import org.apache.storm.multilang.ISerializer;
+import org.apache.storm.multilang.NoOutputException;
+import org.apache.storm.multilang.ShellMsg;
+import org.apache.storm.multilang.SpoutMsg;
+import org.apache.storm.task.TopologyContext;
+import org.apache.storm.utils.Utils;
 
 import org.apache.log4j.Logger;
 import org.msgpack.MessagePack;
@@ -149,7 +149,7 @@ public class MessagePackSerializer implements ISerializer {
     private Object valueToJavaType(Value element) {
         switch (element.getType()) {
             case RAW:
-                return element.asRawValue().getString();
+                return element.asRawValue().getByteArray();
             case INTEGER:
                 return element.asIntegerValue().getLong();
             case FLOAT:
